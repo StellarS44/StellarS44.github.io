@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aman Nair — Animation &amp; Concept Art Portfolio</title>
+<meta name="description" content="Aman Nair — B.Des Animation graduate. 2D concept art, comics, character design, storyboarding and motion graphics." />
+
+<!-- set theme before paint to avoid a flash -->
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem('theme');
+      if(!t) t = (window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    }catch(e){}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Grenze+Gotisch:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   AMAN NAIR — "Ink & Blood" theme
+   Gothic ink art-book aesthetic, with light/dark toggle.
+   Palette: bone/ink + crimson/oxblood (for the gothic comics).
+   (--gold = the crimson accent; name kept to match the markup.)
+   ========================================================= */
+
+/* ---- DARK (default): white ink on black ---- */
+:root,
+[data-theme="dark"]{
+  --bg:#0c0b0c;
+  --bg-2:#161214;
+  --surface:#1d181a;
+  --text:#ece5d8;
+  --muted:#9a9088;
+  --gold:#c4392f;          /* crimson accent */
+  --gold-soft:#e08478;     /* lighter rose for taglines */
+  --crimson:#7c1d18;       /* deep oxblood */
+  --line:rgba(236,229,216,.14);
+  --line-strong:rgba(236,229,216,.28);
+  --grain:.06;
+  --shadow:0 26px 60px -28px rgba(0,0,0,.85);
+}
+/* ---- LIGHT: ink on paper ---- */
+[data-theme="light"]{
+  --bg:#f0e7d9;
+  --bg-2:#e8dcc9;
+  --surface:#fbf5ea;
+  --text:#1d1612;
+  --muted:#6b6051;
+  --gold:#922018;          /* deep oxblood-crimson on paper */
+  --gold-soft:#b1382b;     /* medium crimson */
+  --crimson:#7c1d18;
+  --line:rgba(29,22,18,.16);
+  --line-strong:rgba(29,22,18,.32);
+  --grain:.04;
+  --shadow:0 26px 55px -30px rgba(40,22,18,.5);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'EB Garamond',Georgia,serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.7;font-size:1.08rem;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:background-color .45s ease, color .45s ease;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* film-grain texture over everything */
+body::after{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.display{font-family:'Cinzel',serif}
+.gothic{font-family:'Grenze Gotisch',serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:104px 0;position:relative;transition:background-color .45s ease}
+
+.eyebrow{
+  display:inline-block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.42em;
+  text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:16px;
+}
+h2.section-title{
+  font-family:'Cinzel',serif;font-weight:600;
+  font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.12;margin-bottom:18px;letter-spacing:1px;
+}
+
+/* ornamental divider */
+.rule{display:flex;align-items:center;justify-content:center;gap:18px;padding:6px 0}
+.rule::before,.rule::after{content:"";height:1px;width:min(180px,26vw);background:linear-gradient(90deg,transparent,var(--line-strong))}
+.rule::after{background:linear-gradient(90deg,var(--line-strong),transparent)}
+.rule span{color:var(--gold);font-size:.9rem}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(20px,5vw,48px);transition:background .35s, box-shadow .35s, padding .35s;
+}
+nav.scrolled{background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding-top:13px;padding-bottom:13px}
+.brand{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:700;letter-spacing:2px}
+.brand span{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-family:'Cinzel',serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);opacity:.78;transition:opacity .2s,color .2s}
+.nav-links a:hover{opacity:1;color:var(--gold)}
+.nav-cta{border:1px solid var(--gold);color:var(--gold) !important;padding:8px 18px;border-radius:0;opacity:1 !important;transition:background .25s,color .25s}
+.nav-cta:hover{background:var(--gold);color:var(--bg) !important}
+
+/* theme toggle */
+.theme-toggle{
+  position:relative;width:58px;height:30px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-strong);background:var(--bg-2);flex:0 0 auto;
+}
+.theme-toggle .ti{position:absolute;top:50%;transform:translateY(-50%);font-size:.8rem;line-height:1;opacity:.55}
+.theme-toggle .moon{left:8px}.theme-toggle .sun{right:8px}
+.theme-toggle::after{
+  content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;
+  background:var(--gold);box-shadow:0 2px 6px rgba(0,0,0,.4);transition:transform .38s cubic-bezier(.3,.8,.3,1);
+}
+[data-theme="light"] .theme-toggle::after{transform:translateX(28px)}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;font-size:1.5rem;color:var(--text)}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;padding-top:90px;overflow:hidden;
+}
+.hero::before{ /* vignette + gold whisper */
+  content:"";position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(900px 520px at 78% 12%, color-mix(in srgb,var(--gold) 22%, transparent), transparent 60%),
+    radial-gradient(1100px 700px at 50% 120%, color-mix(in srgb,var(--bg-2) 80%, transparent), transparent 60%);
+  opacity:.9;
+}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.3fr .85fr;gap:50px;align-items:center;width:100%}
+.hero-eyebrow{letter-spacing:.5em}
+.hero h1{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(2.7rem,7.2vw,5.2rem);line-height:1;letter-spacing:2px;margin:8px 0 4px;text-transform:uppercase}
+.hero h1 .sub-name{display:block;color:var(--gold)}
+.hero .tagline{font-family:'Grenze Gotisch',serif;font-size:clamp(1.3rem,2.8vw,1.9rem);color:var(--gold-soft);letter-spacing:.04em;margin:8px 0 22px}
+.hero p.lead{color:var(--muted);max-width:48ch;margin-bottom:32px;font-size:1.1rem}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;padding:14px 28px;cursor:pointer;border:1px solid transparent;
+  transition:transform .2s, background .25s, color .25s, box-shadow .25s;
+}
+.btn-primary{background:var(--gold);color:var(--bg);box-shadow:var(--shadow)}
+.btn-primary:hover{transform:translateY(-3px)}
+.btn-ghost{border-color:var(--line-strong);color:var(--text)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.hero-meta{display:flex;gap:30px;margin-top:38px;flex-wrap:wrap;font-size:.82rem;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:.04em}
+.hero-meta b{display:block;font-size:1.7rem;color:var(--text);font-weight:600;line-height:1;margin-bottom:4px}
+
+/* portrait */
+.portrait-frame{position:relative;justify-self:center}
+.portrait{
+  width:clamp(230px,30vw,330px);aspect-ratio:1;border-radius:50%;overflow:hidden;position:relative;z-index:2;
+  background:var(--surface);border:1px solid var(--line-strong);box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;
+}
+.portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(.15) contrast(1.05)}
+.portrait .pf{position:absolute;inset:0;transition:opacity .6s ease, transform .85s cubic-bezier(.2,.7,.2,1), filter .6s ease;backface-visibility:hidden}
+.portrait .pf-hover{opacity:0;transform:scale(1.12)}
+.portrait:hover .pf-base{opacity:0;transform:scale(1.12);filter:grayscale(.4) contrast(1.05)}
+.portrait:hover .pf-hover{opacity:1;transform:scale(1);filter:grayscale(0) contrast(1.02)}
+.portrait .ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);text-align:center;padding:20px}
+.portrait .ph svg{width:46px;height:46px;opacity:.7;color:var(--gold)}
+.portrait .ph small{font-size:.72rem;letter-spacing:.05em;font-family:'Cinzel',serif}
+@keyframes spin{to{transform:rotate(360deg)}}
+.portrait-frame::before{content:"";position:absolute;inset:-14px;border:1px solid var(--gold);border-radius:50%;opacity:.5;z-index:1}
+.portrait-frame::after{content:"";position:absolute;inset:-26px;border:1px dashed var(--gold);border-radius:50%;opacity:.32;z-index:0;animation:spin 42s linear infinite}
+
+/* ---------- ABOUT ---------- */
+.about{background:var(--bg-2)}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.about p{color:var(--muted);margin-bottom:18px}
+.about p .hl{color:var(--text);font-weight:600}
+.quote{font-family:'EB Garamond',serif;font-style:italic;font-size:1.55rem;color:var(--gold-soft);border-left:2px solid var(--gold);padding-left:24px;line-height:1.5}
+
+/* ---------- WORK / GALLERY (tabbed + masonry) ---------- */
+.work{background:var(--bg)}
+.tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid var(--line);margin:10px 0 0}
+.filter{
+  border:0;background:none;color:var(--muted);font-family:'Cinzel',serif;cursor:pointer;
+  padding:13px 2px;margin-right:30px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+  border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s;
+}
+.filter:hover{color:var(--text)}
+.filter.active{color:var(--gold);border-bottom-color:var(--gold)}
+.filter .count{font-family:'EB Garamond',serif;font-size:.78em;letter-spacing:0;color:var(--gold);border:1px solid var(--line-strong);padding:1px 8px;border-radius:999px;margin-left:9px;vertical-align:middle}
+.gallery-count{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 0}
+.gallery{column-count:3;column-gap:18px;margin-top:18px}
+.card{
+  display:inline-block;width:100%;margin:0 0 18px;break-inside:avoid;position:relative;
+  overflow:hidden;cursor:pointer;background:var(--surface);border:1px solid var(--line);
+  box-shadow:0 14px 30px -22px rgba(0,0,0,.7);
+  opacity:0;transform:translateY(20px);transition:opacity .55s, transform .55s, box-shadow .3s, border-color .3s;transition-delay:var(--d,0ms);
+}
+.card.in{opacity:1;transform:none}
+.card:hover{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold), 0 22px 44px -22px rgba(0,0,0,.75)}
+.card img{width:100%;height:auto;display:block;transition:transform .55s ease, filter .55s ease;filter:saturate(.92)}
+.card:hover img{transform:scale(1.04);filter:saturate(1.05)}
+.card::after{
+  content:"\2922";position:absolute;top:11px;right:11px;width:34px;height:34px;border-radius:50%;
+  background:color-mix(in srgb,var(--bg) 70%, transparent);color:var(--gold);border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;opacity:0;transform:scale(.8);transition:.25s;
+}
+.card:hover::after{opacity:1;transform:none}
+.card.placeholder{background:var(--bg-2);min-height:120px}
+.card.placeholder::after{display:none}
+.ph-miss{padding:28px 14px;text-align:center;color:var(--muted);font-size:.78rem;line-height:1.5;font-family:'Cinzel',serif}
+/* comic tab: row grid so pages read in named order, left-to-right */
+.gallery.rows{column-count:unset;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
+.gallery.rows .card{margin:0;aspect-ratio:3/4}
+.gallery.rows .card img{height:100%;object-fit:cover}
+.readbook{font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:0;padding:8px 15px;cursor:pointer;transition:transform .2s,background .2s;vertical-align:middle}
+.readbook:hover{transform:translateY(-2px)}
+
+/* ---------- SHOWREEL ---------- */
+.reel{background:var(--bg-2);text-align:center}
+.reel-stage{
+  max-width:880px;margin:0 auto;aspect-ratio:16/9;overflow:hidden;
+  background:var(--surface);border:1px solid var(--line-strong);box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;
+}
+.reel-stage iframe,.reel-stage video{width:100%;height:100%;border:0}
+.reel-ph{color:var(--muted);padding:30px}
+.reel-ph .play{width:74px;height:74px;border-radius:50%;border:1px solid var(--gold);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--gold)}
+
+/* ---------- EXPERIENCE ---------- */
+.exp{background:var(--bg)}
+.timeline{position:relative;margin-top:34px;padding-left:6px}
+.timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:1px;background:var(--line-strong)}
+.tl-item{position:relative;padding:0 0 36px 42px}
+.tl-item::before{content:"";position:absolute;left:0;top:7px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:1px solid var(--gold)}
+.tl-item.major::before{background:var(--gold)}
+.tl-role{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:600;line-height:1.25}
+.tl-org{color:var(--gold);font-size:.95rem;margin:3px 0 8px;font-style:italic}
+.tl-item p{color:var(--muted)}
+.tl-tag{display:inline-block;font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-strong);padding:3px 11px;margin-bottom:9px}
+
+/* ---------- SKILLS + EDU ---------- */
+.skills{background:var(--bg-2)}
+.skills-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:56px}
+.skill-group{margin-bottom:28px}
+.skill-group h4{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:var(--surface);border:1px solid var(--line);padding:8px 16px;font-size:.92rem;color:var(--text);transition:all .2s}
+.chip:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.edu-card{background:var(--surface);border:1px solid var(--line-strong);padding:36px;box-shadow:var(--shadow);position:relative}
+.edu-card::before{content:"";position:absolute;inset:6px;border:1px solid var(--line);pointer-events:none}
+.edu-card .eyebrow{color:var(--gold)}
+.edu-card h3{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:600;margin-bottom:6px}
+.edu-card p{color:var(--muted)}
+.edu-card .feat{margin-top:22px;padding-top:22px;border-top:1px solid var(--line);font-size:.96rem;color:var(--muted)}
+.edu-card .feat b{color:var(--text)}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--bg);text-align:center}
+.contact .lead{color:var(--muted);max-width:48ch;margin:0 auto 34px}
+.contact-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.socials{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.social{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line-strong);padding:11px 22px;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
+.social:hover{border-color:var(--gold);background:var(--gold);color:var(--bg);transform:translateY(-3px)}
+.social svg{width:18px;height:18px}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--bg-2);color:var(--muted);text-align:center;padding:44px 24px;border-top:1px solid var(--line)}
+footer .brand{display:block;margin-bottom:8px;color:var(--text)}
+footer small{font-size:.82rem;font-family:'Cinzel',serif;letter-spacing:.08em}
+
+/* ---------- LIGHTBOX (always ink-dark) ---------- */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(7,7,9,.95);display:none;align-items:center;justify-content:center;padding:30px;opacity:0;transition:opacity .3s}
+.lightbox.open{display:flex;opacity:1}
+.lightbox img{max-width:90vw;max-height:82vh;box-shadow:0 30px 70px -20px rgba(0,0,0,.9);border:1px solid rgba(196,57,47,.45)}
+.lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#ece5d8}
+.lb-cap .card-cat{display:block;font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.lb-cap .card-title{font-family:'EB Garamond',serif;font-size:1.15rem}
+.lb-close{position:absolute;top:20px;right:28px;background:none;border:0;color:#ece5d8;font-size:2rem;cursor:pointer;line-height:1}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:0;color:#fff;width:48px;height:48px;font-size:1.4rem;cursor:pointer;transition:background .2s}
+.lb-nav:hover{background:rgba(196,57,47,.38)}
+.lb-prev{left:18px}.lb-next{right:18px}
+
+/* ---------- COMIC FLIPBOOK READER ---------- */
+.flip-reader{position:fixed;inset:0;z-index:120;background:rgba(7,7,9,.96);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.flip-reader.open{display:flex;opacity:1}
+.flip-stage{perspective:2600px;display:flex;align-items:center;justify-content:center;width:100%}
+.book{position:relative;height:min(84vh, calc(94vw / 1.414));aspect-ratio:1.414 / 1;transform-style:preserve-3d;box-shadow:0 30px 80px -22px rgba(0,0,0,.85)}
+.leaf{position:absolute;top:0;height:100%;width:50%;overflow:hidden;background:var(--surface)}
+.static-left{left:0}
+.static-right{right:0}
+.leaf img,.flip-face img{width:100%;height:100%;object-fit:contain;display:block;background:#0b0b0c}
+/* one half of a full-width spread (shown across two pages) */
+.leaf img.halfimg,.flip-face img.halfimg{position:absolute;top:0;width:200%;max-width:none;height:100%;object-fit:cover}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden;background:var(--surface)}
+.flip-face.back{transform:rotateY(180deg)}
+.flipping{right:0;width:50%;transform-origin:left center;transform-style:preserve-3d;z-index:5;display:none}
+.flipping::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.22),transparent 38%)}
+.book::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:34px;transform:translateX(-17px);background:linear-gradient(90deg,transparent,rgba(0,0,0,.30),transparent);pointer-events:none;z-index:2}
+.flip-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:0;color:#fff;width:54px;height:54px;border-radius:50%;font-size:1.7rem;cursor:pointer;transition:background .2s;z-index:10}
+.flip-nav:hover{background:rgba(196,57,47,.55)}
+.flip-nav.prev{left:max(14px,3vw)}
+.flip-nav.next{right:max(14px,3vw)}
+.flip-close{position:absolute;top:18px;right:26px;background:none;border:0;color:#fff;font-size:2.1rem;cursor:pointer;z-index:10;line-height:1}
+.flip-count{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#ece5d8;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.18em}
+.flip-hint{position:absolute;bottom:36px;left:0;right:0;text-align:center;color:rgba(236,229,216,.5);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.14em}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:880px){
+  .nav-links{
+    position:fixed;inset:0 0 0 auto;width:min(76vw,300px);background:var(--bg-2);
+    flex-direction:column;justify-content:center;gap:28px;padding:40px;
+    transform:translateX(100%);transition:transform .35s ease;box-shadow:var(--shadow);border-left:1px solid var(--line);
+  }
+  .nav-links.open{transform:none}
+  .nav-toggle{display:block;z-index:60}
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero p.lead{margin-left:auto;margin-right:auto}
+  .hero-cta,.hero-meta{justify-content:center}
+  .portrait-frame{order:-1}
+  .about-grid,.skills-grid{grid-template-columns:1fr;gap:36px}
+  .gallery{column-count:2}
+}
+@media(max-width:540px){
+  section{padding:74px 0}
+  .gallery{column-count:1}
+  .hero-meta{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav id="nav">
+  <a href="#top" class="brand">AMAN <span>NAIR</span></a>
+  <div class="nav-right">
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#reel">Showreel</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light / dark mode" title="Switch light / dark">
+      <span class="ti moon">☾</span><span class="ti sun">☀</span>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow hero-eyebrow">Graduate B.Des · Animation</span>
+      <h1>Aman<span class="sub-name">Nair</span></h1>
+      <p class="tagline">Concept Art · Comics · Character Design · Motion</p>
+      <p class="lead">A passionate animation designer blending creative storytelling with technical craft — from 44-page comics sold out at Comic-Con to leading 2D art on a 10-minute 3D film.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">View my work</a>
+        <!-- Drop your CV PDF in this folder and name it cv.pdf for this to work -->
+        <a href="CV.pdf" target="_blank" class="btn btn-ghost">Download CV</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>5+</b> projects led</div>
+        <div><b>WBD</b> Originals intern</div>
+        <div><b>Comic-Con</b> sold-out comics</div>
+      </div>
+    </div>
+
+    <div class="portrait-frame reveal">
+      <div class="portrait">
+        <!-- DP.png by default; cross-fades / morphs to DP2.jpg on hover -->
+        <img class="pf pf-base" id="heroPhoto" src="images/DP.png" alt="Aman Nair">
+        <img class="pf pf-hover" src="images/DP2.jpg" alt="" aria-hidden="true">
+        <div class="ph" id="heroPlaceholder" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <small>Drop your photo →<br>images/DP.png</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <span class="eyebrow">About me</span>
+      <h2 class="section-title">Designing stories,<br>frame by frame.</h2>
+      <p class="quote">“I aim to contribute innovative designs and storytelling techniques while pushing my craft in animation and digital media.”</p>
+    </div>
+    <div class="reveal">
+      <p>I'm a <span class="hl">B.Des Animation graduate from Whistling Woods International</span>, specializing in 2D concept art, comics, character design and motion graphics. I love working across the full pipeline — storyboarding, character &amp; environment design, props, assets and motion.</p>
+      <p>I've <span class="hl">led 2D art on a 10-minute 3D film</span>, conceptualized a full pitch deck for a Hades-inspired Indian game art book, and inked &amp; cleaned a biographical comic. My <span class="hl">44-page comic sold out at Comic-Con</span>.</p>
+      <p>I've delivered freelance work with 100% client satisfaction — brand promos for Caribou Coffee &amp; BAKED in Kuwait, character designs for students in Australia, and storyboards for Hyundai, Suzuki and Google — and interned with <span class="hl">Warner Bros. Discovery India</span> on original productions.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><span>✦</span></div>
+
+<!-- ================= WORK / GALLERY ================= -->
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Selected work</span>
+      <h2 class="section-title">Portfolio</h2>
+    </div>
+    <!-- Tabs + images are generated from your images/ sub-folders (see gallery-data.js) -->
+    <div class="tabs reveal" id="filters"></div>
+    <div class="gallery-count reveal" id="galleryCount"></div>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</section>
+
+<!-- ================= SHOWREEL ================= -->
+<section class="reel" id="reel">
+  <div class="wrap reveal">
+    <span class="eyebrow">Motion</span>
+    <h2 class="section-title">Showreel</h2>
+    <p style="color:var(--muted);max-width:50ch;margin:0 auto 30px">A look at my motion graphics and animated work. Paste a YouTube/Vimeo embed or drop a video file to bring this to life.</p>
+    <div class="reel-stage">
+      <!--  TO ADD YOUR REEL, replace this inner block with ONE of:
+            • YouTube:  <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+            • Vimeo:    <iframe src="https://player.vimeo.com/video/VIDEO_ID" allowfullscreen></iframe>
+            • A file:   <video src="images/showreel.mp4" controls></video>  -->
+      <div class="reel-ph">
+        <div class="play">▶</div>
+        <p>Your showreel goes here</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="exp" id="experience">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Experience</span>
+      <h2 class="section-title">Where I've worked</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item major">
+        <span class="tl-tag">Internship</span>
+        <div class="tl-role">Original Productions Intern</div>
+        <div class="tl-org">Warner Bros. Discovery India · 5 months</div>
+        <p>Worked across multiple projects, pitch decks and new IPs that were extremely well received by the team.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">Freelance</span>
+        <div class="tl-role">Brand &amp; Motion — Caribou Coffee, BAKED</div>
+        <div class="tl-org">Kuwait</div>
+        <p>Created animated graphics and brand promos for hospitality brands based in Kuwait.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">Freelance</span>
+        <div class="tl-role">Storyboarding</div>
+        <div class="tl-org">Hyundai · Suzuki · Google &amp; more</div>
+        <p>Extensive storyboarding for major automotive, tech, food and fashion brands.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">Freelance</span>
+        <div class="tl-role">Character Design</div>
+        <div class="tl-org">University students · Australia</div>
+        <p>Created multiple character designs delivered with 100% client satisfaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS + EDUCATION ================= -->
+<section class="skills" id="skills">
+  <div class="wrap skills-grid">
+    <div class="reveal">
+      <span class="eyebrow">Toolkit</span>
+      <h2 class="section-title">Skills &amp; software</h2>
+      <div class="skill-group">
+        <h4>Animation</h4>
+        <div class="chips"><span class="chip">Blender</span><span class="chip">Adobe Animate</span></div>
+      </div>
+      <div class="skill-group">
+        <h4>Design Software</h4>
+        <div class="chips">
+          <span class="chip">Photoshop</span><span class="chip">Illustrator</span>
+          <span class="chip">After Effects</span><span class="chip">Premiere Pro</span>
+          <span class="chip">Procreate</span><span class="chip">Krita</span><span class="chip">InDesign</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Disciplines</h4>
+        <div class="chips">
+          <span class="chip">Storyboarding</span><span class="chip">Character Design</span>
+          <span class="chip">Motion Graphics</span><span class="chip">Concept Art</span><span class="chip">Comic Books</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Education</span>
+      <h2 class="section-title">Schooling</h2>
+      <div class="edu-card">
+        <span class="eyebrow">2021 — 2025</span>
+        <h3>Whistling Woods International</h3>
+        <p>Bachelor of Design (Animation)</p>
+        <div class="feat">
+          <b>Featured:</b> Multiple comics featured &amp; sold out at Comic-Con — including a 44-page original title.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <span class="eyebrow">Let's create</span>
+    <h2 class="section-title">Get in touch</h2>
+    <p class="lead">Open to animation, concept art, comic and freelance projects. Let's make something memorable.</p>
+    <div class="contact-actions">
+      <a href="mailto:amanbnair2002@gmail.com" class="btn btn-primary">amanbnair2002@gmail.com</a>
+      <a href="tel:+919037023012" class="btn btn-ghost">+91 90370 23012</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.behance.net/stellarstudios44" target="_blank" class="social">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zM7.5 6C9.99 6 11 7.2 11 9.1c0 1.1-.5 2-1.4 2.5 1.2.4 1.9 1.4 1.9 2.8 0 2.2-1.6 3.6-4.1 3.6H1V6h6.5zM4 10.3h3c.9 0 1.4-.4 1.4-1.2S7.9 8 7 8H4v2.3zM4 16h3.2c1 0 1.6-.5 1.6-1.4 0-.9-.6-1.4-1.7-1.4H4V16zm16.5-1.4c-.3.7-1 1.1-2 1.1-1.2 0-2-.7-2.1-1.9h6c0-3-1.6-4.9-4.1-4.9-2.6 0-4.3 1.9-4.3 4.6 0 2.7 1.7 4.5 4.4 4.5 2 0 3.5-1 4-2.6l-1.8-.8zm-2-3.9c1 0 1.6.6 1.8 1.5h-3.7c.2-.9.9-1.5 1.9-1.5z"/></svg>
+        Behance
+      </a>
+      <a href="https://www.instagram.com/zleepy.inks" target="_blank" class="social">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        @zleepy.inks
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="brand display">AMAN NAIR</span>
+  <small>Graduate B.Des in Animation · Mumbai, India · © 2026</small>
+</footer>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">×</button>
+  <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+  <button class="lb-nav lb-next" id="lbNext">›</button>
+  <div id="lbBody"></div>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<!-- ============ COMIC FLIPBOOK READER ============ -->
+<div class="flip-reader" id="flipReader">
+  <button class="flip-close" id="flipClose" aria-label="Close">×</button>
+  <div class="flip-stage">
+    <div class="book">
+      <div class="leaf static-left" id="pgLeft"></div>
+      <div class="leaf static-right" id="pgRight"></div>
+      <div class="leaf flipping" id="pgFlip">
+        <div class="flip-face front" id="pgFlipFront"></div>
+        <div class="flip-face back" id="pgFlipBack"></div>
+      </div>
+    </div>
+  </div>
+  <button class="flip-nav prev" id="flipPrev" aria-label="Previous page">‹</button>
+  <button class="flip-nav next" id="flipNext" aria-label="Next page">›</button>
+  <div class="flip-count" id="flipCount"></div>
+  <div class="flip-hint">Click ›  ·  or use the ← → arrow keys to turn the page</div>
+</div>
+
+<!-- gallery-data.js is auto-generated from your images/ folders (shared with index.html). -->
+<script src="gallery-data.js"></script>
+<script>
+/* ===== theme toggle ===== */
+const root=document.documentElement;
+document.getElementById('themeToggle').onclick=()=>{
+  const next = root.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  try{ localStorage.setItem('theme', next); }catch(e){}
+};
+
+/* ===== hero photo: show placeholder only if DP.png is missing ===== */
+(function(){
+  const base=document.getElementById('heroPhoto'), ph=document.getElementById('heroPlaceholder');
+  if(base) base.onerror=()=>{ base.style.display='none'; if(ph) ph.style.display='flex'; };
+})();
+
+/* ===== hide the Showreel section until a real video (iframe/video) is added ===== */
+(function(){
+  const reel=document.getElementById('reel');
+  if(reel && !reel.querySelector('iframe, video')){
+    reel.style.display='none';
+    const link=document.querySelector('.nav-links a[href="#reel"]');
+    if(link) link.style.display='none';
+  }
+})();
+
+/* ===== Tabbed portfolio (each tab = a sub-folder of images/) ===== */
+const CATS = Array.isArray(window.GALLERY) ? window.GALLERY : [];
+const filtersEl=document.getElementById('filters');
+const galleryEl=document.getElementById('gallery');
+const countEl=document.getElementById('galleryCount');
+let active=0;
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.08});
+
+function buildTabs(){
+  filtersEl.innerHTML='';
+  if(!CATS.length){
+    countEl.textContent='';
+    galleryEl.innerHTML='<p style="color:var(--muted)">No images found yet. Add images inside the <b>images/</b> sub-folders, then run <b>refresh-portfolio.bat</b> and reload.</p>';
+    return;
+  }
+  CATS.forEach((c,i)=>{
+    const b=document.createElement('button');
+    b.className='filter'+(i===active?' active':'');
+    b.innerHTML=`${c.label}<span class="count">${c.images.length}</span>`;
+    b.onclick=()=>{
+      active=i; buildTabs(); renderGallery();
+      const top=document.getElementById('work').offsetTop-30;
+      if(window.scrollY>top) window.scrollTo({top,behavior:'smooth'});
+    };
+    filtersEl.appendChild(b);
+  });
+}
+
+function renderGallery(){
+  const c=CATS[active]; galleryEl.innerHTML='';
+  if(!c) return;
+  const isComic=/comic/i.test(c.folder);
+  galleryEl.classList.toggle('rows', isComic);
+  if(isComic){
+    comicCat=c;
+    countEl.innerHTML=`${c.images.length} pages · ${c.label} &nbsp;&nbsp;<button class="readbook" id="readBook">📖 Read as a book</button>`;
+    const rb=document.getElementById('readBook'); if(rb) rb.onclick=()=>openFlip(0);
+  } else {
+    countEl.textContent=`${c.images.length} pieces · ${c.label}`;
+  }
+  c.images.forEach((file,i)=>{
+    const src=encodeURI(`images/${c.folder}/${file}`);
+    const fig=document.createElement('figure'); fig.className='card';
+    fig.style.setProperty('--d', Math.min(i,12)*45+'ms');
+    const img=document.createElement('img'); img.src=src; img.alt=c.label; img.loading='lazy';
+    img.onerror=()=>{ fig.classList.add('placeholder'); fig.innerHTML=`<div class="ph-miss">image not found<br><small>${file}</small></div>`; };
+    fig.appendChild(img);
+    fig.onclick = isComic ? (()=>openFlip(i)) : (()=>openLightbox(active,i));
+    galleryEl.appendChild(fig); io.observe(fig);
+  });
+}
+
+/* ----- lightbox ----- */
+const lb=document.getElementById('lightbox'), lbBody=document.getElementById('lbBody'), lbCap=document.getElementById('lbCap');
+let lbCat=0, lbIndex=0;
+function openLightbox(ci,i){ lbCat=ci; lbIndex=i; showLb(); lb.classList.add('open'); }
+function showLb(){
+  const c=CATS[lbCat], file=c.images[lbIndex], src=encodeURI(`images/${c.folder}/${file}`);
+  lbBody.innerHTML=`<img src="${src}" alt="${c.label}">`;
+  lbCap.innerHTML=`<span class="card-cat">${c.label}</span><div class="card-title">${lbIndex+1} / ${c.images.length}</div>`;
+}
+function lbMove(d){ const c=CATS[lbCat]; lbIndex=(lbIndex+d+c.images.length)%c.images.length; showLb(); }
+document.getElementById('lbClose').onclick=()=>lb.classList.remove('open');
+document.getElementById('lbPrev').onclick=()=>lbMove(-1);
+document.getElementById('lbNext').onclick=()=>lbMove(1);
+lb.onclick=e=>{ if(e.target===lb) lb.classList.remove('open'); };
+document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open'))return; if(e.key==='Escape')lb.classList.remove('open'); if(e.key==='ArrowLeft')lbMove(-1); if(e.key==='ArrowRight')lbMove(1); });
+
+/* ===== comic flipbook reader =====
+   Two-page spread; Next flips the right page over the spine (3D), like a real book.
+   Double-page images (named like "10-11") become one full-width spread that the
+   page-turn reveals across both pages at once. */
+let comicCat=null, screens=[], fpos=0, fmax=0, fAnim=false;
+const flipReader=document.getElementById('flipReader');
+const pgLeft=document.getElementById('pgLeft'), pgRight=document.getElementById('pgRight');
+const pgFlip=document.getElementById('pgFlip'), pgFlipFront=document.getElementById('pgFlipFront'), pgFlipBack=document.getElementById('pgFlipBack');
+const flipCount=document.getElementById('flipCount');
+const FLIP_MS=900;
+
+function comicSrc(i){ if(!comicCat||i==null||i<0||i>=comicCat.images.length) return null; return encodeURI(`images/${comicCat.folder}/${comicCat.images[i]}`); }
+function isSpread(name){ const b=name.replace(/\.[^.]+$/,''); return /\d+\s*-\s*\d+/.test(b) || /spread/i.test(b); }
+
+/* place a normal page, or one half of a wide spread, into a face element */
+function setSlot(el,d){
+  if(!d || d.idx==null){ el.innerHTML=''; return; }
+  const s=comicSrc(d.idx); if(!s){ el.innerHTML=''; return; }
+  if(d.half){ const shift = d.half==='right' ? 'left:-100%;' : 'left:0;'; el.innerHTML=`<img class="halfimg" style="${shift}" src="${s}" alt="">`; }
+  else { el.innerHTML=`<img src="${s}" alt="">`; }
+}
+
+/* build the sequence of book "screens": cover alone, then pairs, with wide spreads
+   taking a whole screen across both pages */
+function buildScreens(){
+  const P=comicCat.images; screens=[];
+  screens.push({type:'pair',left:null,right:0});   // cover alone on the right
+  let i=1;
+  while(i<P.length){
+    if(isSpread(P[i])){ screens.push({type:'spread',img:i}); i++; }
+    else if(i+1<P.length && !isSpread(P[i+1])){ screens.push({type:'pair',left:i,right:i+1}); i+=2; }
+    else { screens.push({type:'pair',left:i,right:null}); i++; }
+  }
+  fmax=screens.length-1;
+}
+function scrLeft(s){ const c=screens[s]; if(!c) return null; return c.type==='spread' ? {idx:c.img,half:'left'} : {idx:c.left}; }
+function scrRight(s){ const c=screens[s]; if(!c) return null; return c.type==='spread' ? {idx:c.img,half:'right'} : {idx:c.right}; }
+function screenOf(idx){ for(let s=0;s<screens.length;s++){ const c=screens[s]; if(c.type==='spread'){ if(c.img===idx) return s; } else if(c.left===idx||c.right===idx) return s; } return 0; }
+
+function renderSpread(){
+  setSlot(pgLeft, scrLeft(fpos));
+  setSlot(pgRight, scrRight(fpos));
+  const total=comicCat.images.length;
+  const r=scrRight(fpos)||scrLeft(fpos);
+  const pg=(r&&r.idx!=null) ? Math.min(r.idx+1,total) : 1;
+  flipCount.textContent=`${comicCat.label} — page ${pg} of ${total}`;
+}
+function openFlip(startIdx){
+  if(!comicCat) return;
+  buildScreens();
+  fpos = startIdx>0 ? screenOf(startIdx) : 0;
+  pgFlip.style.display='none'; pgFlip.style.transition='none'; pgFlip.style.transform='rotateY(0deg)';
+  renderSpread();
+  flipReader.classList.add('open');
+}
+function closeFlip(){ flipReader.classList.remove('open'); }
+
+function nextPage(){
+  if(fAnim || fpos>=fmax) return;
+  fAnim=true;
+  setSlot(pgFlipFront, scrRight(fpos));   // current right page = front of turning sheet
+  setSlot(pgFlipBack,  scrLeft(fpos+1));  // becomes the new left page
+  setSlot(pgRight,     scrRight(fpos+1)); // new right page, revealed underneath
+  pgFlip.style.display='block'; pgFlip.style.transition='none'; pgFlip.style.transform='rotateY(0deg)';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    pgFlip.style.transition=`transform ${FLIP_MS}ms cubic-bezier(.3,.1,.3,1)`;
+    pgFlip.style.transform='rotateY(-180deg)';
+  }));
+  setTimeout(()=>{ fpos++; renderSpread(); pgFlip.style.display='none'; fAnim=false; }, FLIP_MS+30);
+}
+function prevPage(){
+  if(fAnim || fpos<=0) return;
+  fAnim=true; const t=fpos-1;
+  setSlot(pgFlipFront, scrRight(t));      // ends as the right page
+  setSlot(pgFlipBack,  scrLeft(fpos));    // current left page (shown first)
+  setSlot(pgLeft,      scrLeft(t));       // new left page, revealed underneath
+  pgFlip.style.display='block'; pgFlip.style.transition='none'; pgFlip.style.transform='rotateY(-180deg)';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    pgFlip.style.transition=`transform ${FLIP_MS}ms cubic-bezier(.3,.1,.3,1)`;
+    pgFlip.style.transform='rotateY(0deg)';
+  }));
+  setTimeout(()=>{ fpos=t; setSlot(pgRight, scrRight(t)); renderSpread(); pgFlip.style.display='none'; fAnim=false; }, FLIP_MS+30);
+}
+document.getElementById('flipNext').onclick=nextPage;
+document.getElementById('flipPrev').onclick=prevPage;
+document.getElementById('flipClose').onclick=closeFlip;
+flipReader.onclick=e=>{ if(e.target===flipReader) closeFlip(); };
+document.addEventListener('keydown',e=>{
+  if(!flipReader.classList.contains('open')) return;
+  if(e.key==='Escape') closeFlip();
+  if(e.key==='ArrowRight') nextPage();
+  if(e.key==='ArrowLeft') prevPage();
+});
+
+/* ----- reveal + nav ----- */
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=> nav.classList.toggle('scrolled', scrollY>40));
+const navLinks=document.getElementById('navLinks');
+document.getElementById('navToggle').onclick=()=>navLinks.classList.toggle('open');
+navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
+
+buildTabs();
+renderGallery();
+</script>
+</body>
+</html>
