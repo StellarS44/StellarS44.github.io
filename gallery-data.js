@@ -199,3 +199,29 @@
                    ]
     }
 ];
+
+// Featured carousel configuration
+// Add the exact folder name and filename for each image you want in the home carousel.
+// Use the same "folder" value that appears in the gallery entries above.
+// Optional per-image carousel sizing:
+//   "carouselWidth": "100%" or "320px"
+//   "carouselHeight": "2000px" or "360px"
+// If you set "carouselHeight", the image will stretch to that height while preserving
+// aspect ratio, and may become wider as needed.
+// These only affect the home carousel. The gallery pages stay unchanged.
+// Example:
+//   { "folder": "COMIC BOOK", "file": "Cover.png", "carouselHeight": "2000px" }
+//   { "folder": "Character Designs And Illustrations", "file": "IMG_7057.PNG", "carouselWidth": "100%" }
+//   { "folder": "STORYBOARDS", "file": "IMG_5974.PNG", "carouselHeight": "2000px" }
+window.FEATURED = [
+  { "folder": "COMIC BOOK", "file": "Cover.png" },
+  { "folder": "Character Designs And Illustrations", "file": "IMG_4073.PNG" },
+  { "folder": "Character Designs And Illustrations", "file": "IMG_7061.PNG" },
+  { "folder": "Character Designs And Illustrations", "file": "IMG_7064.PNG" },
+  { "folder": "Character Designs And Illustrations", "file": "IMG_7070.PNG" },
+  { "folder": "Character Designs And Illustrations", "file": "IMG_7072.PNG", "carouselHeight": "200%"  },
+  { "folder": "Character Designs And Illustrations", "file": "IMG_7074.PNG" },
+  { "folder": "Character Designs And Illustrations", "file": "IMG_7096.PNG" },
+  { "folder": "Character Designs And Illustrations", "file": "IMG_100.PNG" },
+  
+];

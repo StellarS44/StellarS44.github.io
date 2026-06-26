@@ -19,7 +19,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Grenze+Gotisch:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Grenze+Gotisch:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
 /* =========================================================
@@ -64,7 +64,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  font-family:'EB Garamond',Georgia,serif;
+  font-family:'Cormorant Garamond',Georgia,serif;
   background:var(--bg);color:var(--text);
   line-height:1.7;font-size:1.08rem;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
@@ -156,6 +156,8 @@ nav.scrolled{background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-
 .btn-primary:hover{transform:translateY(-3px)}
 .btn-ghost{border-color:var(--line-strong);color:var(--text)}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.btn.view-category{background:#101010;border:1px solid var(--gold);color:var(--gold)}
+.btn.view-category:hover{background:#fff;border-color:#000;color:#000;transform:translateY(-3px)}
 .hero-meta{display:flex;gap:30px;margin-top:38px;flex-wrap:wrap;font-size:.82rem;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:.04em}
 .hero-meta b{display:block;font-size:1.7rem;color:var(--text);font-weight:600;line-height:1;margin-bottom:4px}
 
@@ -183,7 +185,7 @@ nav.scrolled{background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
 .about p{color:var(--muted);margin-bottom:18px}
 .about p .hl{color:var(--text);font-weight:600}
-.quote{font-family:'EB Garamond',serif;font-style:italic;font-size:1.55rem;color:var(--gold-soft);border-left:2px solid var(--gold);padding-left:24px;line-height:1.5}
+.quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.55rem;color:var(--gold-soft);border-left:2px solid var(--gold);padding-left:24px;line-height:1.5}
 
 /* ---------- WORK / GALLERY (tabbed + masonry) ---------- */
 .work{background:var(--bg)}
@@ -195,9 +197,41 @@ nav.scrolled{background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-
 }
 .filter:hover{color:var(--text)}
 .filter.active{color:var(--gold);border-bottom-color:var(--gold)}
-.filter .count{font-family:'EB Garamond',serif;font-size:.78em;letter-spacing:0;color:var(--gold);border:1px solid var(--line-strong);padding:1px 8px;border-radius:999px;margin-left:9px;vertical-align:middle}
+.filter .count{font-family:'Cormorant Garamond',serif;font-size:.78em;letter-spacing:0;color:var(--gold);border:1px solid var(--line-strong);padding:1px 8px;border-radius:999px;margin-left:9px;vertical-align:middle}
 .gallery-count{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 0}
 .gallery{column-count:3;column-gap:18px;margin-top:18px}
+.featured-carousel{position:relative;overflow:visible;margin-top:18px;display:flex;flex-direction:column;gap:18px}
+.featured-carousel .carousel-window{position:relative;overflow:hidden}
+.featured-carousel .track{display:flex;gap:18px;transition:transform .65s ease;will-change:transform;align-items:center;padding:0;box-sizing:border-box}
+.featured-carousel .slide{flex:0 0 auto;min-height:360px;display:flex;align-items:center;justify-content:center;width:auto;max-width:min(400px,80vw)}
+.featured-carousel .slide .card{margin:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.featured-carousel .carousel-controls{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;pointer-events:none}
+.featured-carousel .carousel-nav{position:absolute;top:50%;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0;transform:translateY(-50%);pointer-events:none}
+.featured-carousel .carousel-arrow{background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.18);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 22px 40px rgba(0,0,0,.35);cursor:pointer;transition:transform .2s,background .2s,border-color .2s;pointer-events:auto;z-index:2}
+.featured-carousel .carousel-nav .carousel-arrow:first-child{position:relative;left:-70px}
+.featured-carousel .carousel-nav .carousel-arrow:last-child{position:relative;right:-70px}
+.featured-carousel .carousel-arrow:hover{transform:scale(1.07);background:rgba(0,0,0,.9);border-color:var(--gold)}
+.featured-carousel .carousel-arrow:focus{outline:2px solid var(--gold);outline-offset:3px}
+.featured-carousel .carousel-indicators{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;justify-content:center;gap:10px;pointer-events:auto;z-index:2}
+.featured-carousel .carousel-dot{width:10px;height:10px;border-radius:50%;background:rgba(236,229,216,.2);border:1px solid rgba(236,229,216,.35);cursor:pointer;transition:transform .25s,background .25s}
+.featured-carousel .carousel-dot.active{background:var(--gold);border-color:var(--gold);transform:scale(1.2)}
+.featured-carousel .slide img{border-radius:8px;width:auto;height:100%;max-width:100%;object-fit:contain;object-position:center center}
+.featured-carousel .slide .card{box-shadow:0 18px 40px -24px rgba(0,0,0,.75);opacity:1;transform:none}
+.featured-carousel .slide .card:hover{transform:none}
+.category-overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px}
+.category-card{background:var(--surface);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:14px;transition:transform .25s,box-shadow .25s}
+.category-card:hover{transform:translateY(-2px);box-shadow:0 20px 40px -24px rgba(0,0,0,.6)}
+.category-card h3{font-family:'Cinzel',serif;font-size:1.15rem;margin:0}
+.category-card .thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.category-card .thumbs img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+.category-card .cat-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.category-card .cat-meta span{font-size:.86rem;color:var(--muted)}
+.category-card .view-category{margin-top:10px;align-self:flex-start}
+.category-gallery{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;overflow:hidden;max-height:0;opacity:0;transition:max-height .45s ease, opacity .35s ease}
+.category-gallery.open{max-height:9999px;opacity:1}
+.category-gallery-count{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.category-gallery .btn{grid-column:1/-1;justify-self:start;margin-top:20px}
+.gallery.featured .card{margin-bottom:18px}
 .card{
   display:inline-block;width:100%;margin:0 0 18px;break-inside:avoid;position:relative;
   overflow:hidden;cursor:pointer;background:var(--surface);border:1px solid var(--line);
@@ -283,7 +317,7 @@ footer small{font-size:.82rem;font-family:'Cinzel',serif;letter-spacing:.08em}
 .lightbox img{max-width:90vw;max-height:82vh;box-shadow:0 30px 70px -20px rgba(0,0,0,.9);border:1px solid rgba(196,57,47,.45)}
 .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#ece5d8}
 .lb-cap .card-cat{display:block;font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
-.lb-cap .card-title{font-family:'EB Garamond',serif;font-size:1.15rem}
+.lb-cap .card-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem}
 .lb-close{position:absolute;top:20px;right:28px;background:none;border:0;color:#ece5d8;font-size:2rem;cursor:pointer;line-height:1}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:0;color:#fff;width:48px;height:48px;font-size:1.4rem;cursor:pointer;transition:background .2s}
 .lb-nav:hover{background:rgba(196,57,47,.38)}
@@ -332,10 +366,14 @@ footer small{font-size:.82rem;font-family:'Cinzel',serif;letter-spacing:.08em}
   .portrait-frame{order:-1}
   .about-grid,.skills-grid{grid-template-columns:1fr;gap:36px}
   .gallery{column-count:2}
+  .gallery.featured{column-count:2}
+  .category-overview{grid-template-columns:1fr}
+  .category-gallery{grid-template-columns:1fr}
 }
 @media(max-width:540px){
   section{padding:74px 0}
   .gallery{column-count:1}
+  .gallery.featured{column-count:1}
   .hero-meta{gap:20px}
 }
 </style>
@@ -404,9 +442,11 @@ footer small{font-size:.82rem;font-family:'Cinzel',serif;letter-spacing:.08em}
       <p class="quote">“I aim to contribute innovative designs and storytelling techniques while pushing my craft in animation and digital media.”</p>
     </div>
     <div class="reveal">
-      <p>I'm a <span class="hl">B.Des Animation graduate from Whistling Woods International</span>, specializing in 2D concept art, comics, character design and motion graphics. I love working across the full pipeline — storyboarding, character &amp; environment design, props, assets and motion.</p>
-      <p>I've <span class="hl">led 2D art on a 10-minute 3D film</span>, conceptualized a full pitch deck for a Hades-inspired Indian game art book, and inked &amp; cleaned a biographical comic. My <span class="hl">44-page comic sold out at Comic-Con</span>.</p>
-      <p>I've delivered freelance work with 100% client satisfaction — brand promos for Caribou Coffee &amp; BAKED in Kuwait, character designs for students in Australia, and storyboards for Hyundai, Suzuki and Google — and interned with <span class="hl">Warner Bros. Discovery India</span> on original productions.</p>
+      <p>I am an animation designer specializing in <span class="hl">2D concept art, storyboarding, and character design</span>. I cover the entire pipeline—from directing 2D art for a 10-minute 3D film to developing original IP pitch decks.</p>
+      
+      <p>My background includes a 5-month original productions internship with <span class="hl">Warner Bros. Discovery India</span> and creating original <span class="hl">comic books that sold out at Comic-Con</span>.</p>
+      
+      <p>I also deliver high-impact commercial storyboards and motion graphics for global clients, including <span class="hl">Google, Hyundai, and Suzuki</span></p>
     </div>
   </div>
 </section>
@@ -420,8 +460,19 @@ footer small{font-size:.82rem;font-family:'Cinzel',serif;letter-spacing:.08em}
       <span class="eyebrow">Selected work</span>
       <h2 class="section-title">Portfolio</h2>
     </div>
-    <!-- Tabs + images are generated from your images/ sub-folders (see gallery-data.js) -->
-    <div class="tabs reveal" id="filters"></div>
+    <div class="reveal">
+      <span class="eyebrow">Portfolio highlights</span>
+      <h2 class="section-title">Featured gallery</h2>
+      <p style="color:var(--muted);max-width:60ch;margin-top:12px;">A curated selection of artwork across character design, comics and storyboards.</p>
+    </div>
+    <div class="featured-carousel reveal" id="featuredGallery"></div>
+
+    <div class="reveal" style="margin-top:48px;">
+      <span class="eyebrow">Portfolio categories</span>
+      <h2 class="section-title">Browse by section</h2>
+    </div>
+    <div class="category-overview reveal" id="filters"></div>
+
     <div class="gallery-count reveal" id="galleryCount"></div>
     <div class="gallery" id="gallery"></div>
   </div>
@@ -608,36 +659,222 @@ document.getElementById('themeToggle').onclick=()=>{
 
 /* ===== Tabbed portfolio (each tab = a sub-folder of images/) ===== */
 const CATS = Array.isArray(window.GALLERY) ? window.GALLERY : [];
+const featuredEl=document.getElementById('featuredGallery');
 const filtersEl=document.getElementById('filters');
 const galleryEl=document.getElementById('gallery');
 const countEl=document.getElementById('galleryCount');
-let active=0;
+let active=-1;
 
 const io=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 },{threshold:.08});
 
+let featuredIndex = 0;
+let featuredTimer = null;
+let featuredGalleryItems = [];
+function buildFeatured(){
+  if(!featuredEl) return;
+  featuredEl.innerHTML='';
+  if(!CATS.length) return;
+  const featuredItems=[];
+  if(Array.isArray(window.FEATURED) && window.FEATURED.length){
+    window.FEATURED.forEach(entry=>{
+      const folder = String(entry.folder||entry.label||'').trim();
+      const file = String(entry.file||entry.image||entry.filename||'').trim();
+      if(!file || !folder) return;
+      const category = CATS.find(c=> c.folder.toLowerCase()===folder.toLowerCase() || c.label.toLowerCase()===folder.toLowerCase());
+      if(category && category.images.includes(file)) featuredItems.push({category,file});
+    });
+  }
+  if(!featuredItems.length){
+    CATS.forEach(c=>{
+      c.images.slice(0,3).forEach(file=> featuredItems.push({category:c,file}));
+    });
+  }
+  const items = featuredItems.slice(0,10);
+  featuredGalleryItems = items;
+  if(!items.length) return;
+
+  const track=document.createElement('div'); track.className='track';
+  const dots=document.createElement('div'); dots.className='carousel-indicators';
+  const slides=[];
+  const makeSlide=(item)=>{
+    const {category,file,carouselWidth,carouselHeight}=item;
+    const slide=document.createElement('div'); slide.className='slide';
+    const fig=document.createElement('figure'); fig.className='card';
+    const img=document.createElement('img'); img.src=encodeURI(`images/${category.folder}/${file}`); img.alt=category.label;
+    if(carouselHeight){
+      img.style.height = carouselHeight;
+      img.style.width = 'auto';
+      slide.style.minHeight = carouselHeight;
+    } else {
+      img.style.height = '100%';
+      img.style.width = 'auto';
+    }
+    img.style.objectFit = 'contain';
+    if(carouselWidth) img.style.maxWidth = carouselWidth;
+    img.onerror=()=>{ fig.classList.add('placeholder'); fig.innerHTML=`<div class="ph-miss">image not found<br><small>${file}</small></div>`; };
+    fig.appendChild(img);
+    io.observe(fig);
+    slide.appendChild(fig);
+    slide.onclick=()=>{
+      const imageIndex=items.findIndex(it=> it.category===category && it.file===file);
+      openLightbox(null, imageIndex, featuredGalleryItems);
+    };
+    return slide;
+  };
+
+  items.forEach((item,i)=>{
+    slides.push(makeSlide(item));
+    const dot=document.createElement('button');
+    dot.className='carousel-dot'+(i===0?' active':'');
+    dot.onclick=(e)=>{ e.stopPropagation(); setFeaturedIndex(i); };
+    dots.appendChild(dot);
+  });
+
+  if(slides.length > 1){
+    track.appendChild(makeSlide(items[items.length-1]));
+    slides.forEach(slide=>track.appendChild(slide));
+    track.appendChild(makeSlide(items[0]));
+  } else {
+    slides.forEach(slide=>track.appendChild(slide));
+  }
+
+  const carouselWindow = document.createElement('div');
+  carouselWindow.className = 'carousel-window';
+  carouselWindow.appendChild(track);
+  featuredEl.appendChild(carouselWindow);
+  const controls=document.createElement('div'); controls.className='carousel-controls';
+  const nav=document.createElement('div'); nav.className='carousel-nav';
+  const prev=document.createElement('button'); prev.className='carousel-arrow'; prev.type='button'; prev.innerHTML='‹';
+  const next=document.createElement('button'); next.className='carousel-arrow'; next.type='button'; next.innerHTML='›';
+  prev.onclick=(e)=>{ e.stopPropagation(); setFeaturedIndex(featuredIndex-1); };
+  next.onclick=(e)=>{ e.stopPropagation(); setFeaturedIndex(featuredIndex+1); };
+  nav.appendChild(prev); nav.appendChild(next);
+  controls.appendChild(nav);
+  controls.appendChild(dots);
+  featuredEl.appendChild(controls);
+
+  const realCount = items.length;
+  let visualIndex = realCount > 1 ? 1 : 0;
+  function updatePosition(noAnimation){
+    const slideEl=track.querySelector('.slide');
+    const width = slideEl ? slideEl.offsetWidth : 0;
+    const gap = parseInt(getComputedStyle(track).gap) || 18;
+    if(noAnimation){ track.style.transition='none'; }
+    requestAnimationFrame(()=>{
+      track.style.transform = `translateX(-${visualIndex * (width + gap)}px)`;
+      if(noAnimation){ requestAnimationFrame(()=>{ track.style.transition='transform .65s ease'; }); }
+    });
+  }
+
+  track.addEventListener('transitionend',()=>{
+    if(realCount <= 1) return;
+    if(visualIndex === 0){
+      visualIndex = realCount;
+      updatePosition(true);
+    } else if(visualIndex === realCount + 1){
+      visualIndex = 1;
+      updatePosition(true);
+    }
+  });
+
+  function setFeaturedIndex(index){
+    featuredIndex=(index%realCount + realCount)%realCount;
+    visualIndex = featuredIndex + 1;
+    updatePosition();
+    dots.querySelectorAll('.carousel-dot').forEach((dot,ii)=>dot.classList.toggle('active', ii===featuredIndex));
+    resetFeaturedTimer();
+  }
+
+  function resetFeaturedTimer(){
+    if(featuredTimer) clearInterval(featuredTimer);
+    featuredTimer=setInterval(()=>setFeaturedIndex(featuredIndex+1),4500);
+  }
+
+  window.addEventListener('resize',()=>setFeaturedIndex(featuredIndex));
+  setFeaturedIndex(0);
+}
+
 function buildTabs(){
   filtersEl.innerHTML='';
   if(!CATS.length){
+    filtersEl.innerHTML='<p style="color:var(--muted)">No categories found yet. Add images inside the <b>images/</b> sub-folders, then run <b>refresh-portfolio.bat</b> and reload.</p>';
     countEl.textContent='';
-    galleryEl.innerHTML='<p style="color:var(--muted)">No images found yet. Add images inside the <b>images/</b> sub-folders, then run <b>refresh-portfolio.bat</b> and reload.</p>';
+    galleryEl.innerHTML='';
     return;
   }
   CATS.forEach((c,i)=>{
-    const b=document.createElement('button');
-    b.className='filter'+(i===active?' active':'');
-    b.innerHTML=`${c.label}<span class="count">${c.images.length}</span>`;
-    b.onclick=()=>{
-      active=i; buildTabs(); renderGallery();
-      const top=document.getElementById('work').offsetTop-30;
-      if(window.scrollY>top) window.scrollTo({top,behavior:'smooth'});
-    };
-    filtersEl.appendChild(b);
+    const card=document.createElement('article');
+    card.className='category-card';
+    const meta=document.createElement('div');
+    meta.className='cat-meta';
+    meta.innerHTML=`<h3>${c.label}</h3><span>${c.images.length} pieces</span>`;
+    const thumbs=document.createElement('div'); thumbs.className='thumbs';
+    c.images.slice(0,3).forEach(file=>{
+      const img=document.createElement('img');
+      img.src=encodeURI(`images/${c.folder}/${file}`);
+      img.alt=c.label;
+      img.loading='lazy';
+      thumbs.appendChild(img);
+    });
+    const link=document.createElement('a');
+    link.className='btn btn-ghost view-category';
+    link.textContent = `Explore ${c.label}`;
+    link.href = c.label.toLowerCase().includes('character') ? 'character-designs.html' : c.label.toLowerCase().includes('comic') ? 'comic-book.html' : 'storyboards.html';
+    card.appendChild(meta);
+    card.appendChild(thumbs);
+    card.appendChild(link);
+    filtersEl.appendChild(card);
   });
+  if(active >= 0){
+    const activeWrap = filtersEl.querySelector(`.category-gallery[data-index="${active}"]`);
+    if(activeWrap) renderCategoryGallery(active, activeWrap);
+  }
+}
+
+function renderCategoryGallery(index, container){
+  const c=CATS[index];
+  container.innerHTML='';
+  if(!c) return;
+  const isComic=/comic/i.test(c.folder);
+  container.classList.toggle('rows', isComic);
+  const countBar=document.createElement('div');
+  countBar.className='category-gallery-count';
+  countBar.textContent = isComic ? `${c.images.length} pages · ${c.label}` : `${c.images.length} pieces · ${c.label}`;
+  container.appendChild(countBar);
+  c.images.forEach((file,i)=>{
+    const src=encodeURI(`images/${c.folder}/${file}`);
+    const fig=document.createElement('figure'); fig.className='card';
+    fig.style.setProperty('--d', Math.min(i,12)*45+'ms');
+    const img=document.createElement('img'); img.src=src; img.alt=c.label; img.loading='lazy';
+    img.onerror=()=>{ fig.classList.add('placeholder'); fig.innerHTML=`<div class="ph-miss">image not found<br><small>${file}</small></div>`; };
+    fig.appendChild(img);
+    fig.onclick = isComic ? (()=>openFlip(i)) : (()=>openLightbox(index,i));
+    container.appendChild(fig); io.observe(fig);
+  });
+  const closeBtn=document.createElement('button');
+  closeBtn.className='btn btn-ghost view-category';
+  closeBtn.textContent='Close';
+  closeBtn.onclick=()=>{ active=-1; buildTabs(); scrollToWork(); };
+  container.appendChild(closeBtn);
+}
+
+function scrollToWork(){
+  const overview = document.getElementById('filters');
+  const target = overview || document.getElementById('work');
+  if(!target) return;
+  const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 20);
+  window.scrollTo({top, behavior:'smooth'});
 }
 
 function renderGallery(){
+  if(active < 0){
+    countEl.textContent='';
+    galleryEl.innerHTML='';
+    galleryEl.classList.remove('rows');
+    return;
+  }
   const c=CATS[active]; galleryEl.innerHTML='';
   if(!c) return;
   const isComic=/comic/i.test(c.folder);
@@ -664,13 +901,38 @@ function renderGallery(){
 /* ----- lightbox ----- */
 const lb=document.getElementById('lightbox'), lbBody=document.getElementById('lbBody'), lbCap=document.getElementById('lbCap');
 let lbCat=0, lbIndex=0;
-function openLightbox(ci,i){ lbCat=ci; lbIndex=i; showLb(); lb.classList.add('open'); }
+let featuredLightboxItems = null;
+function openLightbox(ci,i,items){
+  lbCat = ci;
+  lbIndex = i;
+  featuredLightboxItems = Array.isArray(items) ? items : null;
+  showLb();
+  lb.classList.add('open');
+}
 function showLb(){
-  const c=CATS[lbCat], file=c.images[lbIndex], src=encodeURI(`images/${c.folder}/${file}`);
+  if(Array.isArray(featuredLightboxItems) && featuredLightboxItems.length){
+    const item = featuredLightboxItems[lbIndex];
+    const src=encodeURI(`images/${item.category.folder}/${item.file}`);
+    lbBody.innerHTML=`<img src="${src}" alt="${item.category.label}">`;
+    lbCap.innerHTML=`<span class="card-cat">${item.category.label}</span><div class="card-title">${lbIndex+1} / ${featuredLightboxItems.length}</div>`;
+    return;
+  }
+  const c=CATS[lbCat];
+  const file=c.images[lbIndex];
+  const src=encodeURI(`images/${c.folder}/${file}`);
   lbBody.innerHTML=`<img src="${src}" alt="${c.label}">`;
   lbCap.innerHTML=`<span class="card-cat">${c.label}</span><div class="card-title">${lbIndex+1} / ${c.images.length}</div>`;
 }
-function lbMove(d){ const c=CATS[lbCat]; lbIndex=(lbIndex+d+c.images.length)%c.images.length; showLb(); }
+function lbMove(d){
+  if(Array.isArray(featuredLightboxItems) && featuredLightboxItems.length){
+    lbIndex = (lbIndex + d + featuredLightboxItems.length) % featuredLightboxItems.length;
+    showLb();
+    return;
+  }
+  const c=CATS[lbCat];
+  lbIndex=(lbIndex+d+c.images.length)%c.images.length;
+  showLb();
+}
 document.getElementById('lbClose').onclick=()=>lb.classList.remove('open');
 document.getElementById('lbPrev').onclick=()=>lbMove(-1);
 document.getElementById('lbNext').onclick=()=>lbMove(1);
@@ -779,8 +1041,8 @@ const navLinks=document.getElementById('navLinks');
 document.getElementById('navToggle').onclick=()=>navLinks.classList.toggle('open');
 navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
 
+buildFeatured();
 buildTabs();
-renderGallery();
 </script>
 </body>
 </html>
