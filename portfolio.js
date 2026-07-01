@@ -150,6 +150,8 @@ function renderCategoryPage(categoryLabel = pageCategory) {
   const category = CATS.find(c => c.label === categoryLabel);
   if (!category) return;
 
+  comicCat = category;
+
   const titleEl = document.querySelector('.section-title');
   if (titleEl) titleEl.textContent = category.label;
   const subtitleEl = document.querySelector('.eyebrow');
@@ -258,8 +260,9 @@ function openFlip(startIdx) {
   if (pgFlip) { pgFlip.style.display = 'none'; pgFlip.style.transition = 'none'; pgFlip.style.transform = 'rotateY(0deg)'; }
   renderSpread();
   if (flipReader) flipReader.classList.add('open');
+  if (document.body) document.body.classList.add('flip-open');
 }
-function closeFlip() { if (flipReader) flipReader.classList.remove('open'); }
+function closeFlip() { if (flipReader) flipReader.classList.remove('open'); if (document.body) document.body.classList.remove('flip-open'); }
 function nextPage() {
   if (fAnim || fpos >= fmax) return;
   fAnim = true;
